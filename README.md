@@ -38,12 +38,10 @@ WSL2 上で NixOS を使用したデスクトップ環境を構築するため�
     ├── editor/                  # エディタ設定
     │   ├── editor_configuration.nix
     │   └── editor_home.nix
-    ├── jpinput/                 # 日本語入力設定
-    │   ├── jpinput_configuration.nix
-    │   ├── jpinput_home.nix
-    │   └── fcitx5/              # Fcitx5 設定ファイル
-    └── wasabi-nix-sync/         # Wasabiストレージとの連携設定
-        └── wasabi-nix-sync.nix
+    └── jpinput/                 # 日本語入力設定
+        ├── jpinput_configuration.nix
+        ├── jpinput_home.nix
+        └── fcitx5/              # Fcitx5 設定ファイル
 ```
 
 ## モジュール
@@ -54,10 +52,6 @@ WSL2 上で NixOS を使用したデスクトップ環境を構築するため�
 
 ### `docker`
 - Docker を有効化し、`frse` ユーザーを `docker` グループに追加して、`sudo` なしで Docker コマンドを実行できるようにします。
-
-### `wasabi-nix-sync`
-- `sway`, `kitty`, `firefox` などの基本的なデスクトップ環境のパッケージを管理します。
-- `kitty` のテーマや透過設定など、ターミナル環境のカスタマイズを行います。
 
 ## インストール済みパッケージ
 
