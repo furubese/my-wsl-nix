@@ -4,7 +4,7 @@ WSL2 上で NixOS を使用したデスクトップ環境を構築するため�
 
 ## 概要
 
-このプロジェクトは、Windows Subsystem for Linux 2 (WSL2) 上で NixOS を動作させ、Sway ウィンドウマネージャーをベースとしたグラフィカルな Linux デスクトップ環境を提供します。モジュール化された設定により、日本語入力、ディスプレイ設定、エディタ設定を統合管理しています。
+このプロジェクトは、Windows Subsystem for Linux 2 (WSL2) 上で NixOS を動作させ、Sway ウィンドウマネージャーをベースとしたグラフィカルな Linux デスクトップ環境を提供します。モジュール化された設定により、日本語入力、ディスプレイ設定、エディタ設定などを統合管理しています。
 
 ## 特徴
 
@@ -20,43 +20,65 @@ WSL2 上で NixOS を使用したデスクトップ環境を構築するため�
 ├── flake.nix                    # Nix Flakes エントリーポイント
 ├── configuration.nix            # システム設定
 ├── home.nix                     # Home Manager 設定
+├── README.md                    # このファイル
 ├── conf/
 │   └── starship/
 │       └── jetpack.toml         # Starship プロンプト設定
 └── module/
+    ├── disk/                    # ディスク・WebDAV関連設定
+    │   ├── disk_configuration.nix
+    │   └── disk_home.nix
     ├── display/                 # ディスプレイ・GUI 設定
     │   ├── display_configuration.nix
     │   ├── display_home.nix
     │   └── sway/
     │       └── config           # Sway ウィンドウマネージャー設定
+    ├── docker/                  # Docker設定
+    │   └── docker_configuration.nix
     ├── editor/                  # エディタ設定
     │   ├── editor_configuration.nix
     │   └── editor_home.nix
-    └── jpinput/                 # 日本語入力設定
-        ├── jpinput_configuration.nix
-        ├── jpinput_home.nix
-        └── fcitx5/              # Fcitx5 設定ファイル
-            ├── conf/
-            ├── config
-            └── profile
+    ├── jpinput/                 # 日本語入力設定
+    │   ├── jpinput_configuration.nix
+    │   ├── jpinput_home.nix
+    │   └── fcitx5/              # Fcitx5 設定ファイル
+    └── wasabi-nix-sync/         # Wasabiストレージとの連携設定
+        └── wasabi-nix-sync.nix
 ```
+
+## モジュール
+
+### `disk`
+- `wsgidav` を使った WebDAV サーバーをセットアップし、`/home/frse/webdav` をルートとして公開します。
+- `rclone` をインストールし、クラウドストレージとの連携を容易にします。
+
+### `docker`
+- Docker を有効化し、`frse` ユーザーを `docker` グループに追加して、`sudo` なしで Docker コマンドを実行できるようにします。
+
+### `wasabi-nix-sync`
+- `sway`, `kitty`, `firefox` などの基本的なデスクトップ環境のパッケージを管理します。
+- `kitty` のテーマや透過設定など、ターミナル環境のカスタマイズを行います。
 
 ## インストール済みパッケージ
 
 ### システムパッケージ
-- **基本ツール**: wget, vim, git, tmux
+- **基本ツール**: wget, vim, git, tmux, mlocate
 - **シェル**: zsh (Oh My Zsh 統合)
 - **日本語入力**: fcitx5, fcitx5-mozc-ut
+- **ファイル共有**: wsgidav (WebDAVサーバー)
+- **クラウド同期**: rclone
 
 ### デスクトップ環境
 - **ウィンドウマネージャー**: Sway
 - **ターミナル**: Kitty (透過効果、カスタムテーマ)
+- **ファイルマネージャー**: yazi
 - **ブラウザ**: Firefox
 - **フォント**: Hack Nerd Font, Noto Fonts
 - **スクリーンショット**: grim, slurp
 - **通知**: mako
 
 ### 開発環境
+- **コンテナ**: Docker
 - **エディタ**: Neovim
 - **セキュリティ**: gnome-keyring
 

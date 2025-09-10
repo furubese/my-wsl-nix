@@ -29,6 +29,12 @@
         # Display設定
         ./module/display/display_configuration.nix
 
+        # Disk
+        ./module/disk/disk_configuration.nix
+
+        # Docker設定
+        ./module/docker/docker_configuration.nix
+
         # Editor設定
         ./module/editor/editor_configuration.nix
         
