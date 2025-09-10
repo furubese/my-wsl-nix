@@ -13,6 +13,7 @@ WSL2 上で NixOS を使用したデスクトップ環境を構築するため�
 - **日本語入力サポート**: Fcitx5 + Mozc による日本語入力環境
 - **モジュラー構成**: 機能ごとに分離された再利用可能な設定
 - **Home Manager 統合**: ユーザー環境の宣言的管理
+- **開発シェル**: `nix develop` を利用したプロジェクトごとの開発環境
 
 ## 構成
 
@@ -20,6 +21,9 @@ WSL2 上で NixOS を使用したデスクトップ環境を構築するため�
 ├── flake.nix                    # Nix Flakes エントリーポイント
 ├── configuration.nix            # システム設定
 ├── home.nix                     # Home Manager 設定
+├── nix-shell/
+│   └── builders/
+│       └── gcc.shell.nix        # GCC開発環境用のNix Shell
 ├── conf/
 │   └── starship/
 │       └── jetpack.toml         # Starship プロンプト設定
@@ -30,6 +34,20 @@ WSL2 上で NixOS を使用したデスクトップ環境を構築するため�
     ├── editor/                  # エディタ設定
     └── jpinput/                 # 日本語入力設定
 ```
+
+## 開発シェル (Nix Shell)
+
+このリポジトリでは、`nix develop` コマンドを通じて利用可能な開発環境を定義しています。
+
+### C/C++ (GCC) 環境
+
+GCC, CMake, Boost を含む開発環境を利用できます。
+
+```bash
+nix develop .#gcclatest
+```
+
+このコマンドを実行すると、必要なツールが揃ったシェルセッションが開始されます。
 
 ## インストール済みパッケージ
 
