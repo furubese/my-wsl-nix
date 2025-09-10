@@ -57,6 +57,7 @@
     ./module/display/display_home.nix
     ./module/editor/editor_home.nix
     ./module/disk/disk_home.nix
+    ./module/docker/docker_home.nix
   ];
 
   home.stateVersion = "25.05";
