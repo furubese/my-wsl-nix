@@ -56,7 +56,7 @@ WSL2 上で NixOS を使用したデスクトップ環境を構築するため�
 ## インストール済みパッケージ
 
 ### システムパッケージ
-- **基本ツール**: wget, vim, git, tmux, mlocate
+- **基本ツール**: wget, vim, git, gh, tmux, mlocate
 - **シェル**: zsh (Oh My Zsh 統合)
 - **日本語入力**: fcitx5, fcitx5-mozc-ut
 - **ファイル共有**: wsgidav (WebDAVサーバー)

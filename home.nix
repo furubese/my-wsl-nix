@@ -9,6 +9,7 @@
     neovim
     # starship
     git
+    gh
     tmux
     tmuxPlugins.tmux-powerline
     tmuxPlugins.nord
@@ -17,7 +18,9 @@
   # Zsh設定
   programs.zsh = {
     enable = true;
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
+    # 古いAutoSuggestions設定
+    # enableAutosuggestions = true;
     enableCompletion = true;
     dotDir = ".config/zsh";
     
