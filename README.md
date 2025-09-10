@@ -4,7 +4,7 @@ WSL2 上で NixOS を使用したデスクトップ環境を構築するため�
 
 ## 概要
 
-このプロジェクトは、Windows Subsystem for Linux 2 (WSL2) 上で NixOS を動作させ、Sway ウィンドウマネージャーをベースとしたグラフィカルな Linux デスクトップ環境を提供します。モジュール化された設定により、日本語入力、ディスプレイ設定、エディタ設定を統合管理しています。
+このプロジェクトは、Windows Subsystem for Linux 2 (WSL2) 上で NixOS を動作させ、Sway ウィンドウマネージャーをベースとしたグラフィカルな Linux デスクトップ環境を提供します。モジュール化された設定により、日本語入力、ディスプレイ設定、エディタ設定などを統合管理しています。
 
 ## 特徴
 
@@ -24,33 +24,24 @@ WSL2 上で NixOS を使用したデスクトップ環境を構築するため�
 │   └── starship/
 │       └── jetpack.toml         # Starship プロンプト設定
 └── module/
+    ├── disk/                    # ディスク設定
     ├── display/                 # ディスプレイ・GUI 設定
-    │   ├── display_configuration.nix
-    │   ├── display_home.nix
-    │   └── sway/
-    │       └── config           # Sway ウィンドウマネージャー設定
+    ├── docker/                  # Docker 設定
     ├── editor/                  # エディタ設定
-    │   ├── editor_configuration.nix
-    │   └── editor_home.nix
     └── jpinput/                 # 日本語入力設定
-        ├── jpinput_configuration.nix
-        ├── jpinput_home.nix
-        └── fcitx5/              # Fcitx5 設定ファイル
-            ├── conf/
-            ├── config
-            └── profile
 ```
 
 ## インストール済みパッケージ
 
 ### システムパッケージ
-- **基本ツール**: wget, vim, git, tmux
+- **基本ツール**: wget, vim, git, tmux, mlocate, gh
 - **シェル**: zsh (Oh My Zsh 統合)
 - **日本語入力**: fcitx5, fcitx5-mozc-ut
 
 ### デスクトップ環境
 - **ウィンドウマネージャー**: Sway
 - **ターミナル**: Kitty (透過効果、カスタムテーマ)
+- **ファイルマネージャ**: yazi
 - **ブラウザ**: Firefox
 - **フォント**: Hack Nerd Font, Noto Fonts
 - **スクリーンショット**: grim, slurp
@@ -58,6 +49,7 @@ WSL2 上で NixOS を使用したデスクトップ環境を構築するため�
 
 ### 開発環境
 - **エディタ**: Neovim
+- **コンテナ**: Docker
 - **セキュリティ**: gnome-keyring
 
 ## 使用方法
@@ -99,19 +91,19 @@ sway
 ## 設定のカスタマイズ
 
 ### 日本語入力
-- タイムゾーン: Asia/Tokyo
-- ロケール: ja_JP.UTF-8
-- 入力メソッド: Fcitx5 + Mozc (辞書拡張版)
+- **タイムゾーン**: Asia/Tokyo
+- **ロケール**: ja_JP.UTF-8
+- **入力メソッド**: Fcitx5 + Mozc (辞書拡張版)
 
 ### ターミナル (Kitty)
-- 背景透過度: 90%
-- カラーテーマ: Catppuccin 風
-- 日本語フォント対応
+- **背景透過度**: 90%
+- **カラーテーマ**: Catppuccin 風
+- **日本語フォント対応
 
 ### Sway ウィンドウマネージャー
-- JIS キーボード対応
-- Vim ライクなキーバインド
-- ステータスバー付き
+- **JIS キーボード対応**
+- **Vim ライクなキーバインド**
+- **ステータスバー付き**
 
 ## VS Code 連携
 

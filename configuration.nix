@@ -30,6 +30,7 @@
     # Oh My Zshのほうが使いやすいので無効化。
     # starship
     home-manager
+    mlocate
   ];
 
   # パッケージ設定
@@ -41,10 +42,13 @@
   # Starshipはいらんなぁ。
   # programs.starship.enable = true;
 
+  # mlocate Setting
+  users.groups.mlocate = {};
+
   # ユーザーセットアップ
   users.users.frse = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ]; # sudo やネットワーク設定に必要なら
+    extraGroups = [ "wheel" "networkmanager" "docker" "mlocate" ]; # sudo やネットワーク設定に必要なら
     shell = pkgs.zsh;
     hashedPassword = "$6$eq8vfHcH9q.1xDev$Y2aKyNEgTxMTbxEMPy1qe7Od/gorzLVSU1fA1pCAj4c38SeQVPAdL8fwN1sk5ryuSWR.NcJA9el4JmoHP2yxS1";
   };
