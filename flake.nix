@@ -13,9 +13,10 @@
     home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     
+    flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, nixos-wsl, home-manager, ... }@inputs: {
+  outputs = { self, nixpkgs, nixos-wsl, home-manager, flake-utils, ... }@inputs: {
     # The host with the hostname `nixos` will use this configuration
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
@@ -55,8 +56,17 @@
 
       ];
     };
+    # NixShellの設定
+    devShells = flake-utils.lib.eachDefaultSystem
+    (system:
+      let
+        pkgs = nixpkgs.legacyPackages.${system};
+      in
+      {
+        # GCC環境のNixShell
+        gcclatest = import ./nix-shell/builders/gcc.shell.nix { inherit pkgs; };
+      }
+    );
   };
-
-
 }
 
