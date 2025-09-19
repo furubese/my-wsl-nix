@@ -65,6 +65,7 @@
       {
         # GCC環境のNixShell
         gcclatest = import ./nix-shell/builders/gcc.shell.nix { inherit pkgs; };
+        ns3 = import ./nix-shell/builders/ns3.shell.nix { inherit pkgs; };
       }
     );
   };

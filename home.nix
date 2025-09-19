@@ -50,7 +50,7 @@
     ];
 
     extraConfig = ''
-      set -g default-terminal "xtmux-256color"
+      set -g default-terminal "tmux-256color"
     '';
   };
 

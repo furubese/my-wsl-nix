@@ -23,7 +23,8 @@ WSL2 上で NixOS を使用したデスクトップ環境を構築するため�
 ├── home.nix                     # Home Manager 設定
 ├── nix-shell/
 │   └── builders/
-│       └── gcc.shell.nix        # GCC開発環境用のNix Shell
+│       ├── gcc.shell.nix        # GCC開発環境用のNix Shell
+│       └── ns3.shell.nix        # ns3開発環境用のNix Shell
 ├── conf/
 │   └── starship/
 │       └── jetpack.toml         # Starship プロンプト設定
@@ -45,6 +46,14 @@ GCC, CMake, Boost を含む開発環境を利用できます。
 
 ```bash
 nix develop .#gcclatest
+```
+
+### ns3 環境
+
+ns3-pybind を利用するための開発環境です。
+
+```bash
+nix develop .#ns3
 ```
 
 このコマンドを実行すると、必要なツールが揃ったシェルセッションが開始されます。
